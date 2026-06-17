@@ -6,10 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "MOLURANTCPPGameMode.generated.h"
 
-/**
- *  Simple GameMode for a first person game
- */
-UCLASS(abstract)
+UCLASS()
 class AMOLURANTCPPGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
