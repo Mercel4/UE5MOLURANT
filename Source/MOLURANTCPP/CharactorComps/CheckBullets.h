@@ -16,6 +16,6 @@ public:
 	// Sets default values for this component's properties
 	UCheckBullets();
 	
-	UFUNCTION(BlueprintCallable, Category="Charactor")
-	void DoShoot(int32 CurrentBullets);
+	UFUNCTION(BlueprintCallable, Category="Character")
+	int32 DoShoot(int32 CurrentBullets);
 };
