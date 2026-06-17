@@ -68,6 +68,8 @@ void AMOLURANTCPPGameMode::SwitchToInGamePhase()
 {
     CurrentPhase = EGamePhase::InGamePhase;
     CurrentRoundTime = SavedInGamePhaseTime;
+    
+    OnPhaseChanged.Broadcast(CurrentPhase);
 }
 
 // 다음 라운드 구매 단계로 넘어갈 때의 처리
@@ -76,6 +78,7 @@ void AMOLURANTCPPGameMode::SwitchToBuyPhase()
     CurrentPhase = EGamePhase::BuyPhase;
     
     CurrentRoundTime = 5;
+    OnPhaseChanged.Broadcast(CurrentPhase);
 }
 
 // 전투 단계가 끝났을 때 (0초가 되었을 때)
@@ -83,6 +86,7 @@ void AMOLURANTCPPGameMode::EndRound()
 {
     CurrentPhase = EGamePhase::RoundEnd;
     CurrentRoundTime = 5; // 5초 동안 카운트다운 진행
+    OnPhaseChanged.Broadcast(CurrentPhase);
 }
 
 FText AMOLURANTCPPGameMode::GetFormatedRoundTime() const
@@ -94,5 +98,5 @@ FText AMOLURANTCPPGameMode::GetFormatedRoundTime() const
 
 FText AMOLURANTCPPGameMode::GetFormatedCurrentRound() const
 {
-    return FText::FromString(FString::Printf(TEXT("ROUND%02d ////// DEFENDERS"), CurrentRound));
+    return FText::FromString(FString::Printf(TEXT("ROUND %02d ////// DEFENDER"), CurrentRound));
 }

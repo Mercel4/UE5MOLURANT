@@ -12,6 +12,8 @@ enum class EGamePhase : uint8
 	RoundEnd      UMETA(DisplayName = "Round End")
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPhaseChanged, EGamePhase, NewPhase);
+
 UCLASS()
 class AMOLURANTCPPGameMode : public AGameModeBase
 {
@@ -19,6 +21,9 @@ class AMOLURANTCPPGameMode : public AGameModeBase
 
 public:
 	AMOLURANTCPPGameMode();
+	
+	UPROPERTY(BlueprintAssignable, Category = "GameMode")
+	FOnPhaseChanged OnPhaseChanged;
     
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 	void StartMatchRules(float BuyPhaseDuration, float InGamePhaseDuration, int32 TotalRounds);
@@ -26,7 +31,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "GameMode")
 	FText GetFormatedRoundTime() const;
 	
-	UFUNCTION(BlueprintCallable, Category = "GameMode")
+	UFUNCTION(BlueprintPure, Category = "GameMode")
 	FText GetFormatedCurrentRound() const;
 
 protected:
