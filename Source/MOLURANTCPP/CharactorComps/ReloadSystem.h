@@ -15,7 +15,7 @@ public:
 	UReloadSystem();
 	
 	UFUNCTION(BlueprintCallable, Category = "Reload")
-	void DoReload(UPARAM(ref) int32& CurrentBullet, UPARAM(ref) int32& maxMagazineBullet, UPARAM(ref) int32& currentReserveBullet, float reloadTime);
+	bool DoReload(UPARAM(ref) int32& CurrentBullet, UPARAM(ref) int32& maxMagazineBullet, UPARAM(ref) int32& currentReserveBullet, float reloadTime);
 	
 private:
 	bool IsAbleToReload(int32 CurrentBullet, int32 MaxMagazineBullet, int32 CurrentReserveBullet);

@@ -6,14 +6,14 @@ UReloadSystem::UReloadSystem()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UReloadSystem::DoReload(int32& CurrentBullet, int32& MaxMagazineBullet, int32& CurrentReserveBullet, float ReloadTime)
+bool UReloadSystem::DoReload(int32& CurrentBullet, int32& MaxMagazineBullet, int32& CurrentReserveBullet, float ReloadTime)
 {
 	// currentBullet: 현재 탄창에 남은 총알 수
 	// maxMagazineBullet: 현재 캐릭터가 가진 탄창의 최대 용량
 	// currentReserveBullet: 현재 캐릭터가 가진 예비 총알 수
 	// reloadTime: 재장전 시간
 	
-	if (bIsReloading) return;
+	if (bIsReloading) return false;
 	
 	if (IsAbleToReload(CurrentBullet, MaxMagazineBullet, CurrentReserveBullet))
 	{
@@ -22,18 +22,24 @@ void UReloadSystem::DoReload(int32& CurrentBullet, int32& MaxMagazineBullet, int
 		TargetCurrentBullet = &CurrentBullet;
 		TargetMaxMagazineBullet = &MaxMagazineBullet;
 		TargetCurrentReserveBullet = &CurrentReserveBullet;
+		
+		if (GetWorld())
+		{
+			GetWorld()->GetTimerManager().SetTimer(
+				ReloadTimerHandle,
+				this,
+				&UReloadSystem::CompleteReload,
+				ReloadTime,
+				false
+			);
+		}
+		
+		return true;
 	}
 	
-	if (GetWorld())
-	{
-		GetWorld()->GetTimerManager().SetTimer(
-			ReloadTimerHandle,
-			this,
-			&UReloadSystem::CompleteReload,
-			ReloadTime,
-			false
-		);
-	}
+	
+	
+	return false;
 }
 
 bool UReloadSystem::IsAbleToReload(int32 CurrentBullet, int32 MaxMagazineBullet, int32 CurrentReserveBullet)
