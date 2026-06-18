@@ -18,7 +18,8 @@ public class MOLURANTCPP : ModuleRules
 			"StateTreeModule",
 			"GameplayStateTreeModule",
 			"UMG",
-			"Slate"
+			"Slate",
+			"NavigationSystem"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
