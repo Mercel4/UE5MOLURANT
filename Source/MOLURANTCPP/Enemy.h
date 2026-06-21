@@ -13,17 +13,20 @@ class MOLURANTCPP_API AEnemy : public ACharacter
 	
 public:	
 	AEnemy();
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 protected:
-	virtual void BeginPlay() override;
-	
 	UFUNCTION(BlueprintCallable, Category = "Enemy")
-	void EnemyMoveToTarget(AActor* TargetActor);
+	void MoveToActor(AActor* TargetActor, float Speed);
 	
-	UPROPERTY(BlueprintReadWrite, Category = "Enemy")
-	float MoveSpeed = 500.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
+	float AcceptanceRadius = 5.0f;
 	
-
-public:	
-	virtual void Tick(float DeltaTime) override;
+private:
+	UPROPERTY()
+	AActor* CachedTargetActor = nullptr;
+	
+	float MoveSpeed = 0.0f;
+	bool bIsMoving = false;
 };
