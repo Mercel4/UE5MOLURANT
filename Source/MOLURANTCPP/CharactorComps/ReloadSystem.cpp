@@ -1,10 +1,7 @@
 #include "CharactorComps/ReloadSystem.h"
 
 // Sets default values for this component's properties
-UReloadSystem::UReloadSystem()
-{
-	PrimaryComponentTick.bCanEverTick = false;
-}
+UReloadSystem::UReloadSystem() { PrimaryComponentTick.bCanEverTick = false; }
 
 bool UReloadSystem::DoReload(int32& CurrentBullet, int32& MaxMagazineBullet, int32& CurrentReserveBullet, float ReloadTime)
 {

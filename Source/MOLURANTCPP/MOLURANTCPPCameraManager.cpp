@@ -1,6 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
-
 #include "MOLURANTCPPCameraManager.h"
 
 AMOLURANTCPPCameraManager::AMOLURANTCPPCameraManager()
