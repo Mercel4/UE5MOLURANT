@@ -14,7 +14,7 @@ public:
 	UGetDamage();
 	
 	UFUNCTION(BlueprintCallable, Category = "Damage")
-	void ApplyDamage(float DamageAmount); // 밖에서는 데미지 양만 던져주면 됨
+	float ApplyDamage(float DamageAmount); // 밖에서는 데미지 양만 던져주면 됨
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	float HP = 100.f; // HP도 컴포넌트가 스스로 들고 있게 합니다.
